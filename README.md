@@ -9,7 +9,7 @@ To use this project, your computer needs:
 - [Git](https://git-scm.com/)
 - [NodeJS](https://nodejs.org/en/)
 
-# Project Configuration (via CLI)
+## Project Configuration (via CLI)
 ```
 git clone https://github.com/niklasfink/class-survey.git
 cd class-survey
