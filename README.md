@@ -4,9 +4,17 @@ This is the git project for a class survey tool which teachers can use to let st
 
 The frontend will be written in Typescript with Angular 2 and will be ported to mobile platforms. The backend will be either PHP or Node.js
 
-# Installation
+## Getting Started
+To use this project, your computer needs:
+- [Git](https://git-scm.com/)
+- [NodeJS](https://nodejs.org/en/)
+
+# Project Configuration (via CLI)
 ```
+git clone https://github.com/niklasfink/class-survey.git
+cd class-survey
 npm install
+npm install gulp -global
 gulp
 ```
 Now you should see the app live at `http://localhost:8000/`.
