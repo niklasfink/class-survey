@@ -15,7 +15,7 @@ You will need to clone the repository before installing the project dependencies
 git clone https://github.com/niklasfink/class-survey.git
 cd class-survey
 npm install
-npm install gulp -global
+npm install -g gulp cordova ionic
 gulp
 ```
 Now you should see the app live at `http://localhost:8000/`.
