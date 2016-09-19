@@ -23,8 +23,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 }
                 AppComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: '<h1 class="title">Welcome to my App</h1>'
+                        selector: 'app',
+                        template: "\n  <h1 class=\"title\">Welcome to my App</h1>\n\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
