@@ -18,18 +18,18 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass', 'copylibs', 'typescript', 'watch', 'webserver']);
+gulp.task('default', ['sass', 'copylibs', 'typescript', 'watch', 'webserver', 'copyDev']);
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src('./scss/app.scss')
     .pipe(sass())
     .on('error', sass.logError)
-    .pipe(gulp.dest('./development/css/'))
+    .pipe(gulp.dest('./builds/development/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest('./builds/development/css/'))
     .on('end', done);
 });
 
@@ -52,6 +52,12 @@ gulp.task('copylibs', function() {
       'node_modules/angular2/bundles/angular2.dev.js'
     ])
     .pipe(gulp.dest(appSrc + 'js/lib/angular2'));
+});
+
+gulp.task('copyDev', function() {
+  return gulp
+    .src('builds/development/**/*.*')
+    .pipe(gulp.dest('www/'));
 });
 
 gulp.task('typescript', function () {

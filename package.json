@@ -1,7 +1,7 @@
 {
 	"name": "class-survey",
 	"version": "0.1.0",
-	"author": "Niklas Fink, Nathan Carlin",
+	"author": "Niklas Fink & Nathan Carlin",
 	"description": "This is a tool created for teachers to gather information about current students.",
 	"repository": {
 		"type": "git",
