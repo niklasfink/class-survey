@@ -34,7 +34,7 @@ gulp.task('typescript', function () {
     .pipe(sourcemaps.init())
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(appSrc + 'js/'));
+    .pipe(gulp.dest(appSrc + '/js'));
 });
 
 gulp.task('watch', function() {
