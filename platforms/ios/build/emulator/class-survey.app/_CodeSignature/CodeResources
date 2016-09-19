@@ -146,7 +146,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		wFull4P2M1cLmVeLSBQU+qDFwEk=
+		rjDEzPx8PSaoxL8FdIoflbi5aPs=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -226,11 +226,11 @@
 		</data>
 		<key>www/js/app.component.js</key>
 		<data>
-		xxVLJHXwd2xE5hn/cK9b2rf+xnA=
+		/3UTg01WK3vd7a0M4YGMQ/9aVd0=
 		</data>
 		<key>www/js/app.component.js.map</key>
 		<data>
-		PB2LZQD0G2rVXJok7K0BwHgskhw=
+		7c5EmBCgngm1U2d0lBfTbls78wY=
 		</data>
 		<key>www/js/app.header.js</key>
 		<data>
@@ -250,11 +250,11 @@
 		</data>
 		<key>www/js/boot.js</key>
 		<data>
-		97uCCf9M1HwYOBJMo/GXMpJhgcI=
+		JqhdNPFB3LjuVP2J6QtEK37/6s0=
 		</data>
 		<key>www/js/boot.js.map</key>
 		<data>
-		4IBz+3mNr/8YSLp+Qh3psv7EPqA=
+		zhRTfZx0T7fZWGdqDTzSOAKuBjE=
 		</data>
 		<key>www/js/lib/angular2/Rx.js</key>
 		<data>
@@ -279,6 +279,14 @@
 		<key>www/js/lib/angular2/system.src.js</key>
 		<data>
 		ZTYRW+ZOD/lm4FVG93Z2dvp8A9Y=
+		</data>
+		<key>www/js/login.component.js</key>
+		<data>
+		57j0Aq035NxF69Cdt6idHcv2DgA=
+		</data>
+		<key>www/js/login.component.js.map</key>
+		<data>
+		ys7ogCBFV+tzzHVE74yoT0TT8VQ=
 		</data>
 		<key>www/lib/ionic/css/ionic.css</key>
 		<data>
@@ -945,11 +953,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wFull4P2M1cLmVeLSBQU+qDFwEk=
+			rjDEzPx8PSaoxL8FdIoflbi5aPs=
 			</data>
 			<key>hash2</key>
 			<data>
-			3YV8FSJAsX6NT3vdMzwJYE2qyg9s4G3dOZrsqpyx5/M=
+			MQJmCsLylQXMkDgQkBCxCywMMkPfr1pF7qgkxxDiq+Y=
 			</data>
 		</dict>
 		<key>config.xml</key>
@@ -1154,22 +1162,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xxVLJHXwd2xE5hn/cK9b2rf+xnA=
+			/3UTg01WK3vd7a0M4YGMQ/9aVd0=
 			</data>
 			<key>hash2</key>
 			<data>
-			pdLp52ACPKS9zO9l/c3z8RbquYyeTNBlW4Xq01MMgoE=
+			d9qQK0dSTZF8xYubrPqb8J3zusfBqIleFbe7Vf3VjaQ=
 			</data>
 		</dict>
 		<key>www/js/app.component.js.map</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PB2LZQD0G2rVXJok7K0BwHgskhw=
+			7c5EmBCgngm1U2d0lBfTbls78wY=
 			</data>
 			<key>hash2</key>
 			<data>
-			AjdDmNDjYCBXQhSaFaVUUKlsaGy5WMHUXXzutY4UnHs=
+			kkriYmyvkrCgYoPVzLr1ZiAzMFNsS9UcVnq/AdgLAqo=
 			</data>
 		</dict>
 		<key>www/js/app.header.js</key>
@@ -1220,22 +1228,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			97uCCf9M1HwYOBJMo/GXMpJhgcI=
+			JqhdNPFB3LjuVP2J6QtEK37/6s0=
 			</data>
 			<key>hash2</key>
 			<data>
-			KWC+JZzkyX/F5CkRMQDIHGaVUwfvA1us9Q9vrAX9XrE=
+			6atZfVAhfYHvqnxyKgt1FSgZsRqtKg19Euq8MYAWd+4=
 			</data>
 		</dict>
 		<key>www/js/boot.js.map</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			4IBz+3mNr/8YSLp+Qh3psv7EPqA=
+			zhRTfZx0T7fZWGdqDTzSOAKuBjE=
 			</data>
 			<key>hash2</key>
 			<data>
-			F3VHJ1A1GCZWT9vmHbWkr0k+moqDr2cFjGPrgzVoOlY=
+			C28csuJvdXiEW7XnffDb8wbUz4LyO64dTny/0sdpdBw=
 			</data>
 		</dict>
 		<key>www/js/lib/angular2/Rx.js</key>
@@ -1302,6 +1310,28 @@
 			<key>hash2</key>
 			<data>
 			cwLC1j++y/OrM284oqy6YTmF33Z2RaddzYi+jXOBU9A=
+			</data>
+		</dict>
+		<key>www/js/login.component.js</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			57j0Aq035NxF69Cdt6idHcv2DgA=
+			</data>
+			<key>hash2</key>
+			<data>
+			RAhkW8poLRluQwlacFqpIXJGmF6iYXwEsO9sqtBmo5A=
+			</data>
+		</dict>
+		<key>www/js/login.component.js.map</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ys7ogCBFV+tzzHVE74yoT0TT8VQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			IIgjrGALUIwSm2vVAVslWmAWx6OcwUbXEYXT103/sSs=
 			</data>
 		</dict>
 		<key>www/lib/ionic/css/ionic.css</key>
