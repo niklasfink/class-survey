@@ -1,5 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/niklasfink/class-survey.svg?label=ready&title=Ready)](http://waffle.io/niklasfink/class-survey)
-
 # class-survey
 
 This is the git project for a class survey tool which teachers can use to let students type in their information in the beginning of a semester or school year for a later look up of important stuff like picture, name, advisor, class and other custom fields.
@@ -24,5 +22,5 @@ Now you should see the app live at `http://localhost:8000/`.
 
 If you get a semantic error while running the gulp command in /node_modules/angular2/src/facade/promise.d.ts add the following code at the top of the promise.d.ts file.
 ```
-declare var Promise: PromiseConstructor; 
+declare var Promise: PromiseConstructor;
 ```
