@@ -3,25 +3,30 @@
 
 <head>
 	<meta charset="utf-8">
-	<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
-	<meta name="format-detection" content="telephone=no">
-	<meta name="msapplication-tap-highlight" content="no">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-	<title>Class-Survey</title>
-	<link href='https://fonts.googleapis.com/css?family=Lato:700,400,100,200,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
-
+	<meta name="viewport" content="width=device-width">
+	<title>Learn AngularJS2: The Basics</title>
+	<link rel="manifest" href="manifest.json">
+	<!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+	<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+	<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+	<!-- ionic/angularjs js -->
+	<script src="lib/ionic/js/ionic.bundle.js"></script>
 	<script src="js/lib/angular2/es6-shim.min.js"></script>
 	<script src="js/lib/angular2/system-polyfills.js"></script>
 	<script src="js/lib/angular2/angular2-polyfills.js"></script>
 	<script src="js/lib/angular2/system.src.js"></script>
 	<script src="js/lib/angular2/Rx.js"></script>
 	<script src="js/lib/angular2/angular2.dev.js"></script>
-	<script type="text/javascript" src="cordova.js"></script>
-	<!-- Add Firebase Depends -->
-	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase-database.js"></script>
 	<script>
 		System.config({
 			packages: {
@@ -33,26 +38,12 @@
 		});
 		System.import('js/boot')
 			.then(null, console.error.bind(console));
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyB_PXaiTdRaxSILx5dWjT-_vasfT9LBk7Q",
-			authDomain: "class-survey.firebaseapp.com",
-			databaseURL: "https://class-survey.firebaseio.com",
-			storageBucket: "class-survey.appspot.com",
-			messagingSenderId: "768843683653"
-		};
-		firebase.initializeApp(config);
-		var database = firebase.database();
-		database.ref('users/' + 1).set({
-			username: "Niklas",
-			email: "nudann@gmail.com",
-			profile_picture: "http://securebank.santander.de/Estatico/ALP_EBANDE_WTemplates_E/Images/logo_santanderCB.gif"
-		});
+		var app = angular.module('app', ['ionic'])
 	</script>
 </head>
 
 <body>
-	<my-app>Loading...</my-app>
+	<app>Loading ...</app>
 </body>
 
 </html>
