@@ -11,25 +11,25 @@ var gulp = require('gulp'),
     sh = require('shelljs'),
     tscConfig = require('./tsconfig.json');
 
-var appSrc = 'dist/',
-    tsSrc = 'src/backend/typescript/';
+var appSrc = 'builds/development/',
+    tsSrc = 'process/typescript/';
 
 var paths = {
-  sass: ['src/scss/**/*.scss']
+  sass: ['./scss/**/*.scss']
 };
 
 gulp.task('default', ['sass', 'copylibs', 'typescript', 'watch', 'webserver', 'copyDev']);
 
 gulp.task('sass', function(done) {
-  gulp.src('src/scss/app.scss')
+  gulp.src('./scss/app.scss')
     .pipe(sass())
     .on('error', sass.logError)
-    .pipe(gulp.dest('dist/css/'))
+    .pipe(gulp.dest('./builds/development/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('dist/css/'))
+    .pipe(gulp.dest('./builds/development/css/'))
     .on('end', done);
 });
 
@@ -56,8 +56,8 @@ gulp.task('copylibs', function() {
 
 gulp.task('copyDev', function() {
   return gulp
-    .src('dist/**/*.*')
-    .pipe(gulp.dest('src/ionic/www'));
+    .src('builds/development/**/*.*')
+    .pipe(gulp.dest('www/'));
 });
 
 gulp.task('typescript', function () {

@@ -2,8 +2,8 @@
 node_modules
 .tmp
 npm-debug.log
-dist/js
-src/ionic/platforms
-src/ionic/www
+builds/development/js
+platforms
+www
 .vscode
-src/ionic/plugins
+plugins
