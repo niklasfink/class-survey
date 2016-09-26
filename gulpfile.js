@@ -15,13 +15,13 @@ var appSrc = 'dist/',
     tsSrc = 'src/backend/typescript/';
 
 var paths = {
-  sass: ['src/scss/**/*.scss']
+  sass: ['src/ionic/scss/**/*.scss']
 };
 
-gulp.task('default', ['sass', 'copylibs', 'typescript', 'watch', 'webserver', 'copyDev']);
+gulp.task('default', ['install', 'git-check', 'sass', 'copylibs', 'typescript', 'watch', 'webserver']);
 
-gulp.task('sass', function(done) {
-  gulp.src('src/scss/app.scss')
+gulp.task('sass', function(done) { 
+  gulp.src('src/ionic/scss/app.scss')
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(gulp.dest('dist/css/'))
@@ -54,11 +54,13 @@ gulp.task('copylibs', function() {
     .pipe(gulp.dest(appSrc + 'js/lib/angular2'));
 });
 
+/* 
 gulp.task('copyDev', function() {
   return gulp
-    .src('dist/**/*.*')
+    .src('dist/**-/*.*')
     .pipe(gulp.dest('src/ionic/www'));
 });
+*/
 
 gulp.task('typescript', function () {
   return gulp
