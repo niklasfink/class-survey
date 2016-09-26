@@ -7,3 +7,4 @@ src/ionic/platforms
 src/ionic/www
 .vscode
 src/ionic/plugins
+bower_components

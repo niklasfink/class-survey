@@ -1,47 +1,55 @@
 var gulp = require('gulp'),
-    webserver = require('gulp-webserver'),
-    typescript = require('gulp-typescript'),
-    sourcemaps = require('gulp-sourcemaps'),
-    gutil = require('gulp-util'),
-    concat = require('gulp-concat'),
-    sass = require('gulp-sass'),
-    minifyCss = require('gulp-minify-css'),
-    rename = require('gulp-rename'),
-    bower = require('bower'),
-    sh = require('shelljs'),
-    tscConfig = require('./tsconfig.json');
+  webserver = require('gulp-webserver'),
+  typescript = require('gulp-typescript'),
+  sourcemaps = require('gulp-sourcemaps'),
+  gutil = require('gulp-util'),
+  sass = require('gulp-sass'),
+  minifyCss = require('gulp-minify-css'),
+  rename = require('gulp-rename'),
+  bower = require('bower'),
+  sh = require('shelljs'),
+  tscConfig = require('./tsconfig.json');
 
-var appSrc = 'dist/',
-    tsSrc = 'src/backend/typescript/';
+var dist = 'dist/',
+  tsSrc = 'src/backend/typescript/',
+  src = 'src/webapp/';
 
 var paths = {
-  sass: ['src/ionic/scss/**/*.scss']
+  dist: ['dist/'],
+  sass: ['src/ionic/scss/**/*.scss'],
+  tsSrc: ['src/backend/typescript/'],
+  webSrc: ['src/webapp/']
 };
 
-gulp.task('default', ['install', 'git-check', 'sass', 'copylibs', 'typescript', 'watch', 'webserver']);
+gulp.task('default', ['install']);
+gulp.task('web', ['copylibs', 'typescript', 'html', 'css', 'watch', 'webserver']);
 
-gulp.task('sass', function(done) { 
-  gulp.src('src/ionic/scss/app.scss')
+gulp.task('sass', function (done) {
+  return gulp.src('src/ionic/scss/app.scss')
     .pipe(sass())
     .on('error', sass.logError)
-    .pipe(gulp.dest('dist/css/'))
+    .pipe(gulp.dest(paths.dist + 'css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('dist/css/'))
+    .pipe(rename({
+      extname: '.min.css'
+    }))
+    .pipe(gulp.dest(paths.dist + 'css/'))
     .on('end', done);
 });
 
-gulp.task('html', function() {
-  gulp.src(appSrc + '**/*.html');
+gulp.task('html', function () {
+  return gulp.src(paths.webSrc + '**/*.html')
+    .pipe(gulp.dest(paths.dist + ''));
 });
 
-gulp.task('css', function() {
-  gulp.src(appSrc + '**/*.css');
+gulp.task('css', function () {
+  return gulp.src(paths.webSrc + '**/*.css')
+    .pipe(gulp.dest(paths.dist + ''));
 });
 
-gulp.task('copylibs', function() {
+gulp.task('copylibs', function () {
   return gulp
     .src([
       'node_modules/es6-shim/es6-shim.min.js',
@@ -51,49 +59,40 @@ gulp.task('copylibs', function() {
       'node_modules/rxjs/bundles/Rx.js',
       'node_modules/angular2/bundles/angular2.dev.js'
     ])
-    .pipe(gulp.dest(appSrc + 'js/lib/angular2'));
+    .pipe(gulp.dest(paths.dist + '/js/lib/angular2'));
 });
-
-/* 
-gulp.task('copyDev', function() {
-  return gulp
-    .src('dist/**-/*.*')
-    .pipe(gulp.dest('src/ionic/www'));
-});
-*/
 
 gulp.task('typescript', function () {
   return gulp
-    .src(tsSrc + '**/*.ts')
+    .src(paths.tsSrc + '**/*.ts')
     .pipe(sourcemaps.init())
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(appSrc + '/js'));
+    .pipe(gulp.dest(paths.dist + 'js'));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(tsSrc + '**/*.ts', ['typescript']);
-  gulp.watch(appSrc + 'css/*.css', ['css']);
-  gulp.watch(appSrc + '**/*.html', ['html']);
+gulp.task('watch', function () {
+  gulp.watch(paths.tsSrc + '**/*.ts', ['typescript']);
+  gulp.watch(paths.webSrc + 'css/*.css', ['css']);
+  gulp.watch(paths.webSrc + '**/*.html', ['html']);
   gulp.watch(paths.sass, ['sass']);
 });
 
-gulp.task('webserver', function() {
-  gulp.src(appSrc)
+gulp.task('webserver', function () {
+  return gulp.src(paths.dist)
     .pipe(webserver({
-      livereload: true,
-      open: true
+      livereload: true
     }));
 });
 
-gulp.task('install', ['git-check'], function() {
+gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
-    .on('log', function(data) {
+    .on('log', function (data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
 
-gulp.task('git-check', function(done) {
+gulp.task('git-check', function (done) {
   if (!sh.which('git')) {
     console.log(
       '  ' + gutil.colors.red('Git is not installed.'),
