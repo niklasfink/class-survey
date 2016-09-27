@@ -17,6 +17,7 @@ cd class-survey
 npm install
 npm install -g gulp cordova ionic
 gulp
+gulp [web|ionic]
 ```
 Now you should see the app live at `http://localhost:8000/`.
 
