@@ -1,4 +1,6 @@
 {
-  "name": "class-survey",
-  "app_id": "com.natecarlin.class-survey"
+  "name": "Class Survey Ionic",
+  "app_id": "class-survey-ionic",
+  "typescript": true,
+  "v2": true
 }
