@@ -17,8 +17,9 @@ cd class-survey
 npm install
 npm install -g gulp cordova ionic
 gulp
-gulp [web|ionic]
 ```
+Now you are able to run either `gulp web` to start up the web server or `ionic serve` to start up the ionic development environment.
+
 Now you should see the app live at `http://localhost:8000/`.
 
 If you get a semantic error while running the gulp command in /node_modules/angular2/src/facade/promise.d.ts add the following code at the top of the promise.d.ts file.
