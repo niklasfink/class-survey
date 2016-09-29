@@ -10,10 +10,6 @@ var gulp = require('gulp'),
   sh = require('shelljs'),
   tscConfig = require('./tsconfig.json');
 
-var dist = 'dist/',
-  tsSrc = 'src/backend/typescript/',
-  src = 'src/webapp/';
-
 var paths = {
   dist: ['dist/'],
   sass: ['src/ionic/scss/**/*.scss'],
