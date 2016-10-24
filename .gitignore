@@ -2,9 +2,4 @@
 node_modules
 .tmp
 npm-debug.log
-dist/js
-src/ionic/platforms
-src/ionic/www
 .vscode
-src/ionic/plugins
-bower_components
