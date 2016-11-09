@@ -1,26 +1,31 @@
-# class-survey
+# ClassSurvey
 
-This is the git project for a class survey tool which teachers can use to let students type in their information in the beginning of a semester or school year for a later look up of important stuff like picture, name, advisor, class and other custom fields.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
-The front-end will be written in Typescript with Angular 2 and will be ported to mobile platforms. The backend will be either PHP or Node.js
+## Development server
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Getting Started
-To use this project, your computer needs:
-- [Git](https://git-scm.com/)
-- [NodeJS](https://nodejs.org/en/)
+## Code scaffolding
 
-## Project Configuration (via CLI)
-You will need to clone the repository before installing the project dependencies with `npm` and finally running the project with `gulp`.
-```
-git clone https://github.com/niklasfink/class-survey.git
-cd class-survey
-npm install
-npm install -g gulp cordova ionic
-gulp
-```
-Now you are able to run either `gulp web` to start up the web server or `ionic serve` to start up the ionic development environment.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
-If you get a semantic error while running the gulp command in /node_modules/angular2/src/facade/promise.d.ts add the following code at the top of the promise.d.ts file.
-```
-declare var Promise: PromiseConstructor;
-```
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+## Deploying to Github Pages
+
+Run `ng github-pages:deploy` to deploy to Github Pages.
+
+## Further help
+
+To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
