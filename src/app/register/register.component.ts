@@ -2,27 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent {
+export class RegisterComponent {
   email: string;
   password: string;
   constructor(
     public af: AngularFire
   ) { };
 
-  login() {
-    this.af.auth.login({
+  register() {
+    this.af.auth.createUser({
       email: this.email,
       password: this.password
     }).then(res => {
       console.log(res);
+
     }, err => {
       console.log(err);
     }).catch(function (error) {
       console.log(error);
-    });
+    });;
   }
 }
