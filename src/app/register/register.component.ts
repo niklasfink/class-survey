@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
 
 @Component({
@@ -19,7 +19,7 @@ export class RegisterComponent {
       password: this.password
     }).then(res => {
       console.log(res);
-
+      this.af.database.object("/users/" + res.uid).set({ firstName: "Niklas" });
     }, err => {
       console.log(err);
     }).catch(function (error) {

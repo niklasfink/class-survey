@@ -8,13 +8,10 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-import {
-  AngularFireModule,
-  AuthMethods,
-  AuthProviders,
-  AngularFire
-} from "angularfire2";
+import { AngularFireModule, AuthMethods, AuthProviders, AngularFire } from "angularfire2";
 import { RegisterComponent } from './register/register.component';
+import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { GlobalService } from './globals';
 
 const firebaseConfig = ({
   apiKey: "AIzaSyB_PXaiTdRaxSILx5dWjT-_vasfT9LBk7Q",
@@ -24,9 +21,13 @@ const firebaseConfig = ({
   messagingSenderId: "768843683653"
 });
 
+export class SharedService {
+  globalVar: string = "hallo";
+}
+
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegisterComponent
+    AppComponent, LoginComponent, RegisterComponent, CreateSurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -39,25 +40,22 @@ const firebaseConfig = ({
       method: AuthMethods.Password
     })
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  user: any;
   constructor(
-    public af: AngularFire
+    public af: AngularFire,
+    public globals: GlobalService
   ) {
     this.af.auth.subscribe(user => {
       if (user) {
         // user logged in
-        this.user = user;
-        console.log(user);
+        this.globals.user = user;
       }
       else {
         // user not logged in
-        this.user = {};
       }
     });
   }
-
 }
