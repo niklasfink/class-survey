@@ -19,9 +19,7 @@ export class RegisterComponent {
       password: this.password
     }).then(res => {
       console.log(res);
-      this.af.database.object("/users/" + res.uid).set({ firstName: "Niklas" });
-    }, err => {
-      console.log(err);
+      this.af.database.object("/users/" + res.uid).set({ firstName: "Niklas", lastName: "Fink" });
     }).catch(function (error) {
       console.log(error);
     });;

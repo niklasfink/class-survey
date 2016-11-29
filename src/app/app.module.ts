@@ -52,6 +52,12 @@ export class AppModule {
       if (user) {
         // user logged in
         this.globals.user = user;
+        let fName = this.af.database.object("/users/" + user.uid + "/firstName");
+        let lName = this.af.database.object("/users/" + user.uid + "/lastName");
+        this.globals.user.firstName = fName;
+        this.globals.user.lastName = lName;
+        this.globals.user.name = fName + " " + lName;
+        console.log(fName);
       }
       else {
         // user not logged in

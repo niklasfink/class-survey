@@ -1,3 +1,6 @@
 <h1>Navigation Goes Here</h1>
+<div class="logged-in" *ngIf="globals.user">
+	You are logged in as {{globals.user.name}}!
+</div>
 
 <router-outlet></router-outlet>

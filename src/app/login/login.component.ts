@@ -19,8 +19,6 @@ export class LoginComponent {
       password: this.password
     }).then(res => {
       console.log(res);
-    }, err => {
-      console.log(err);
     }).catch(function (error) {
       console.log(error);
     });
