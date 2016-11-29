@@ -43,9 +43,8 @@ export class CreateSurveyComponent {
       .push({ name: this.name, description: this.description, questions: this.questions })
       .then(res => {
         // Survey saved! Show notification, forward to...
-      }, err => {
-        console.log(err);
-      });
+      })
+      .catch(err => console.log(err, 'You dont have access!'));
   }
 
 }

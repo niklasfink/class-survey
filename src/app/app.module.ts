@@ -52,12 +52,14 @@ export class AppModule {
       if (user) {
         // user logged in
         this.globals.user = user;
-        let fName = this.af.database.object("/users/" + user.uid + "/firstName");
-        let lName = this.af.database.object("/users/" + user.uid + "/lastName");
-        this.globals.user.firstName = fName;
-        this.globals.user.lastName = lName;
-        this.globals.user.name = fName + " " + lName;
-        console.log(fName);
+        let fName = this.af.database.object("/users/" + user.uid + "/firstName")
+          .subscribe(data => {
+            this.globals.user.firstName = data.$value;
+          });
+        let lName = this.af.database.object("/users/" + user.uid + "/lastName")
+          .subscribe(data => {
+            this.globals.user.lastName = data.$value;
+          });
       }
       else {
         // user not logged in
