@@ -10,8 +10,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { AngularFireModule, AuthMethods, AuthProviders, AngularFire } from "angularfire2";
 import { RegisterComponent } from './register/register.component';
-import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { SurveyCreateComponent } from './survey-create/survey-create.component';
 import { GlobalService } from './globals';
+import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
 
 const firebaseConfig = ({
   apiKey: "AIzaSyB_PXaiTdRaxSILx5dWjT-_vasfT9LBk7Q",
@@ -24,7 +25,7 @@ const firebaseConfig = ({
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, RegisterComponent,
-    CreateSurveyComponent, NavigationComponent, HomeComponent
+    SurveyCreateComponent, NavigationComponent, HomeComponent, SurveyOverviewComponent
   ],
   imports: [
     BrowserModule,

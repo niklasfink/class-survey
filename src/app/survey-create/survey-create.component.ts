@@ -14,12 +14,12 @@ class Question {
 }
 
 @Component({
-  selector: 'app-create-survey',
-  templateUrl: './create-survey.component.html',
-  styleUrls: ['./create-survey.component.css']
+  selector: 'app-survey-create',
+  templateUrl: './survey-create.component.html',
+  styleUrls: ['./survey-create.component.css']
 })
 
-export class CreateSurveyComponent {
+export class SurveyCreateComponent {
 
   questions: Array<Question> = new Array;
   name: string = "";
