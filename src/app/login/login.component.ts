@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ export class LoginComponent {
   email: string;
   password: string;
   constructor(
-    public af: AngularFire
+    public af: AngularFire,
+    public router: Router
   ) { };
 
   login() {
@@ -18,7 +20,7 @@ export class LoginComponent {
       email: this.email,
       password: this.password
     }).then(res => {
-      console.log(res);
+      this.router.navigateByUrl("/");
     }).catch(function (error) {
       console.log(error);
     });

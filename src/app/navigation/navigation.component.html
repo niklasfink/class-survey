@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+<nav class="navbar navbar-dark bg-inverse">
 	<div class="container">
 		<a class="navbar-brand hidden-sm-up" href="#">
 			<img src="../assets/img/GannonUniversityLogo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Class
@@ -14,14 +14,26 @@
 		</a>
 		<ul class="nav navbar-nav">
 			<li class="nav-item">
-				<a [routerLink]="['/']">Home</a>
+				<a class="nav-link" [routerLink]="['/']">Home</a>
 			</li>
-			<li class="nav-item">
-				<a [routerLink]="['/login']">Login</a>
+			<li *ngIf="!globals.user" class="nav-item">
+				<a class="nav-link" [routerLink]="['/login']">Login</a>
 			</li>
-			<li class="nav-item">
-				<a [routerLink]="['/register']">Register</a>
+			<li *ngIf="!globals.user" class="nav-item">
+				<a class="nav-link" [routerLink]="['/register']">Register</a>
+			</li>
+			<li *ngIf="globals.user" class="nav-item">
+				<a class="nav-link" [routerLink]="['/create-survey']">Create Survey</a>
+			</li>
+			<li *ngIf="globals.user" class="nav-item">
+				<button class="btn btn-outline-warning" (click)="logout()">Logout</button>
 			</li>
 		</ul>
+		<span class="navbar-text float-xs-right text-muted" *ngIf="globals.user">
+			You are logged in as {{globals.user.firstName}}!
+		</span>
+		<span class="navbar-text float-xs-right text-muted" *ngIf="!globals.user">
+			You are not logged in!
+		</span>
 	</div>
 </nav>

@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AngularFire, AuthProviders } from 'angularfire2';
+import { Router } from '@angular/router';
+import { GlobalService } from '../globals';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
-  constructor() { }
+  constructor(
+    public af: AngularFire,
+    private router: Router,
+    public globals: GlobalService
+  ) { }
 
-  ngOnInit() {
+  logout() {
+    this.af.auth.logout();
+    this.router.navigateByUrl("/");
   }
 
 }
