@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { HomeComponent } from './home/home.component';
 
 import { AngularFireModule, AuthMethods, AuthProviders, AngularFire } from "angularfire2";
 import { RegisterComponent } from './register/register.component';
@@ -27,7 +29,9 @@ export class SharedService {
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegisterComponent, CreateSurveyComponent
+    AppComponent, LoginComponent, RegisterComponent, CreateSurveyComponent,
+    NavigationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
