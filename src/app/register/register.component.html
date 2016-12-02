@@ -1,6 +1,10 @@
 <div class="container">
 	<form class="form-register">
 		<h2 class="form-register-heading">Please register</h2>
+		<label for="firstName" class="sr-only">First name</label>
+		<input [(ngModel)]="firstName" name="firstName" type="text" class="form-control" placeholder="John" required autofocus>
+		<label for="lastName" class="sr-only">Last name</label>
+		<input [(ngModel)]="lastName" name="lastName" type="text" class="form-control" placeholder="Doe" required autofocus>
 		<label for="inputEmail" class="sr-only">Email address</label>
 		<input [(ngModel)]="email" name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
 		<label for="inputPassword" class="sr-only">Password</label>
