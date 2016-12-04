@@ -16,23 +16,26 @@
 			<li class="nav-item">
 				<a class="nav-link" [routerLink]="['/']">Home</a>
 			</li>
-			<li *ngIf="!globals.user" class="nav-item">
+			<li *ngIf="!globals.loggedIn" class="nav-item">
 				<a class="nav-link" [routerLink]="['/login']">Login</a>
 			</li>
-			<li *ngIf="!globals.user" class="nav-item">
+			<li *ngIf="!globals.loggedIn" class="nav-item">
 				<a class="nav-link" [routerLink]="['/register']">Register</a>
 			</li>
-			<li *ngIf="globals.user" class="nav-item">
-				<a class="nav-link" [routerLink]="['/create-survey']">Create Survey</a>
+			<li *ngIf="globals.loggedIn" class="nav-item">
+				<a class="nav-link" [routerLink]="['/survey-overview']">Overview</a>
 			</li>
-			<li *ngIf="globals.user" class="nav-item">
+			<li *ngIf="globals.loggedIn" class="nav-item">
+				<a class="nav-link" [routerLink]="['/survey-create']">Create Survey</a>
+			</li>
+			<li *ngIf="globals.loggedIn" class="nav-item">
 				<button class="btn btn-outline-warning" (click)="logout()">Logout</button>
 			</li>
 		</ul>
-		<span class="navbar-text float-xs-right text-muted" *ngIf="globals.user">
-			You are logged in as {{globals.user.firstName}}!
+		<span class="navbar-text float-xs-right text-muted" *ngIf="globals.loggedIn">
+			You are logged in as {{firstName}}!
 		</span>
-		<span class="navbar-text float-xs-right text-muted" *ngIf="!globals.user">
+		<span class="navbar-text float-xs-right text-muted" *ngIf="!globals.loggedIn">
 			You are not logged in!
 		</span>
 	</div>

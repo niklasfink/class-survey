@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFire } from 'angularfire2';
 import { GlobalService } from '../globals';
 
 class Question {
@@ -25,8 +24,7 @@ export class SurveyCreateComponent {
   name: string = "";
   description: string = "";
 
-  constructor(public af: AngularFire,
-    public globals: GlobalService) {
+  constructor(public globals: GlobalService) {
   }
 
   addQuestion() {
@@ -39,12 +37,14 @@ export class SurveyCreateComponent {
   }
 
   saveSurvey() {
-    this.af.database.list("/users/" + this.globals.user.uid + "/" + "surveys")
-      .push({ name: this.name, description: this.description, questions: this.questions })
-      .then(res => {
-        // Survey saved! Show notification, forward to...
-      })
-      .catch(err => console.log(err, 'You dont have access!'));
+    this.globals.user.subscribe(user => {
+      this.globals.af.database.list("/users/" + user.uid + "/" + "surveys")
+        .push({ name: this.name, description: this.description, questions: this.questions })
+        .then(res => {
+          // Survey saved! Show notification, forward to...
+        })
+        .catch(err => console.log(err, 'You dont have access!'));
+    });
   }
 
 }

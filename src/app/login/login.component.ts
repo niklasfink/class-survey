@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string;
   password: string;
+
   constructor(
     public af: AngularFire,
     public router: Router

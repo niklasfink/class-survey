@@ -9,8 +9,9 @@ import { AngularFire, AuthProviders } from 'angularfire2';
 export class RegisterComponent {
     email: string;
     password: string;
+
     constructor(
-        public af: AngularFire
+        private af: AngularFire
     ) { };
 
     register() {
@@ -20,7 +21,7 @@ export class RegisterComponent {
         }).then(res => {
             console.log(res);
             this.af.database.object("/users/" + res.uid).set({ firstName: "Niklas", lastName: "Fink" });
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log(error);
         });;
     }

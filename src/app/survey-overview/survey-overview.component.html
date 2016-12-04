@@ -1,3 +1,21 @@
-<p>
-  survey-overview works!
-</p>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Survey name</th>
+			<th># questions</th>
+			<th># participations</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let survey of surveys">
+			<th class="id" scope="row">{{survey.$key}}</th>
+			<td class="survey-name" ngbPopover="{{survey.description}}" triggers="mouseenter:mouseleave" popoverTitle="Survey Description"
+				container="body">{{survey.name}}</td>
+			<td class="number-questions">{{survey.length}}</td>
+			<td class="number-participations">XX</td>
+			<td class="actions">Action</td>
+		</tr>
+	</tbody>
+</table>

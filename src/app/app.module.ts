@@ -43,28 +43,5 @@ const firebaseConfig = ({
 })
 export class AppModule {
   constructor(
-    public af: AngularFire,
-    public globals: GlobalService
-  ) {
-    this.af.auth.subscribe(user => {
-      console.log(user);
-      if (user) {
-        // user logged in
-        this.globals.user = user;
-        let fName = this.af.database.object("/users/" + user.uid + "/firstName")
-          .subscribe(data => {
-            this.globals.user.firstName = data.$value;
-            fName.unsubscribe();
-          });
-        let lName = this.af.database.object("/users/" + user.uid + "/lastName")
-          .subscribe(data => {
-            this.globals.user.lastName = data.$value;
-            lName.unsubscribe();
-          });
-      } else {
-        this.globals.user = null;
-        // user not logged in
-      }
-    });
-  }
+  ) { }
 }
