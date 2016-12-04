@@ -1,7 +1,14 @@
 <div class="container">
 	<h2 class="createsurvey-heading">Create Survey</h2>
-	<input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Survey Name" required autofocus>
-	<input [(ngModel)]="description" name="description" type="textarea" class="form-control" placeholder="Survey Description">
+	<div class="card">
+		<div class="card-header">
+   			Info
+  		</div>
+		<div class="card-block">
+			<input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Survey Name" required autofocus>
+			<input [(ngModel)]="description" name="description" type="textarea" class="form-control" placeholder="Survey Description">
+		</div>
+	</div>
 	<div class="questions">
 		<div class="question" *ngFor="let question of questions; let i = index;">
 			<button class="btn btn-secondary" (click)="questions.splice(i, 1)">Remove Question</button>
@@ -16,6 +23,29 @@
 			</div>
 		</div>
 	</div>
-	<button class="btn btn-lg btn-primary btn-block" (click)="addQuestion()">Add Question</button>
-	<button class="btn btn-lg btn-success btn-block" (click)="saveSurvey()">Save</button>
+	<div class="col">
+		<!--<button class="btn btn-primary" (click)="addQuestion()" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>-->
+		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>
+		<button class="btn btn-success" (click)="saveSurvey()">Save</button>
+	</div>
+</div>
+
+<!-- Model for question options -->
+<div class="modal fade" id="questionOptions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add a new question</h4>
+      </div>
+      <div class="modal-body">
+        <a><i class="fi-list-thumbnails"></i> Multiple Choice</a><hr/>
+		<a><i class="fi-align-left"></i> Single Textbox</a><hr/>
+		<a><i class="fi-photo"></i> Image Upload</a><hr/>
+		<a><i class="fi-upload"></i> File Upload</a>
+      </div>
+    </div>
+  </div>
 </div>
