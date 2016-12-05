@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AngularFire, AuthProviders } from "angularfire2";
 
 export class User {
@@ -12,7 +12,7 @@ export class User {
 export class GlobalService {
 
     // Observable user source
-    private subject = new BehaviorSubject<User>(null);
+    private subject = new ReplaySubject<User>(1);
     // Observable user stream
     user = this.subject.asObservable();
     // for fast login checks
