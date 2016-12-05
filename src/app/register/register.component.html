@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="col-lg-4 col-md-8 col-sm-12 col-centered">
+		<ngb-alert *ngIf="alert.message" [type]="alert.type" (close)="alert = {}">{{ alert.message }}</ngb-alert>
 		<form class="form-register">
 			<h2 class="form-register-heading">Create account</h2>
 			<div class="form-group">
