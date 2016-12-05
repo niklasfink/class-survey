@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="col-lg-4 col-md-8 col-sm-12 col-centered">
+		<ngb-alert *ngIf="alert.message" [type]="alert.type" (close)="alert = {}">{{ alert.message }}</ngb-alert>
 		<form class="form-register">
 			<h2 class="form-register-heading">Create account</h2>
 			<label for="firstName" class="sr-only">First name</label>
@@ -11,7 +12,8 @@
 			<label for="inputPassword" class="sr-only">Password</label>
 			<input [(ngModel)]="password" name="password" type="password" class="form-control" placeholder="Password" required>
 			<label for="inputPasswordAgain" class="sr-only">Password</label>
-			<input [(ngModel)]="passwordAgain" name="passwordAgain" type="password" class="form-control" placeholder="Password again" required>
+			<input [(ngModel)]="passwordAgain" name="passwordAgain" type="password" class="form-control" placeholder="Password again"
+				required>
 			<button class="btn btn-lg btn-primary btn-block" type="submit" (click)="register()">Register</button>
 		</form>
 		<hr/>

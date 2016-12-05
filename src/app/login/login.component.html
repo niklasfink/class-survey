@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="col-lg-4 col-md-8 col-sm-12 col-centered">
+		<ngb-alert *ngIf="alert.message" [type]="alert.type" (close)="alert = {}">{{ alert.message }}</ngb-alert>
 		<form class="form-signin">
 			<h2 class="form-signin-heading">Sign in</h2>
 			<label for="inputEmail" class="sr-only">Email address</label>
