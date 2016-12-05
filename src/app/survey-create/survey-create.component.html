@@ -1,15 +1,18 @@
 <div class="container">
 	<h2 class="createsurvey-heading">Create Survey</h2>
 	<div class="card">
-		<div class="card-header">
-   			Info
-  		</div>
 		<div class="card-block">
-			<input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Survey Name" required autofocus>
-			<input [(ngModel)]="description" name="description" type="textarea" class="form-control" placeholder="Survey Description">
+			<!--<input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Survey Name" required autofocus>-->
+			<h4 class="card-title">Survey name goes here</h4>
+			<!--<input [(ngModel)]="description" name="description" type="textarea" class="form-control" placeholder="Survey Description">-->
+			<h6 class="card-subtitle text-muted">Survey description goes here</h6>
 		</div>
+		<div class="card-footer text-muted">
+    		Edit
+  	</div>
 	</div>
-	<div class="questions">
+
+	<div class="card question-card text-xs-center">
 		<div class="question" *ngFor="let question of questions; let i = index;">
 			<button class="btn btn-secondary" (click)="questions.splice(i, 1)">Remove Question</button>
 			<input [(ngModel)]="question.type" name="type" type="text" class="form-control" placeholder="Question Type">
@@ -22,12 +25,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col">
 		<!--<button class="btn btn-primary" (click)="addQuestion()" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>-->
-		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>
-		<button class="btn btn-success" (click)="saveSurvey()">Save</button>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>	
 	</div>
+	<button class="btn btn-success" (click)="saveSurvey()">Save</button>
 </div>
 
 <!-- Model for question options -->
@@ -41,11 +42,28 @@
         <h4 class="modal-title" id="myModalLabel">Add a new question</h4>
       </div>
       <div class="modal-body">
-        <a><i class="fi-list-thumbnails"></i> Multiple Choice</a><hr/>
-		<a><i class="fi-align-left"></i> Single Textbox</a><hr/>
-		<a><i class="fi-photo"></i> Image Upload</a><hr/>
-		<a><i class="fi-upload"></i> File Upload</a>
+				<a (click)="addQuestion()" data-dismiss="modal">
+					<div class="container">
+						<i class="fi-list-thumbnails"></i> Multiple Choice<hr/>
+					</div>
+				</a>
+				<a (click)="addQuestion()" data-dismiss="modal">
+					<div class="container">
+						<i class="fi-align-left"></i> Single Textbox<hr/>
+					</div>
+				</a>
+				<a (click)="addQuestion()" data-dismiss="modal">
+					<div class="container">
+						<i class="fi-photo"></i> Image Upload<hr/>
+					</div>
+				</a>
+				<a (click)="addQuestion()" data-dismiss="modal">
+					<div class="container">
+						<i class="fi-upload"></i> File Upload
+					</div>
+				</a>
       </div>
     </div>
   </div>
 </div>
+<!-- End model for question options -->
