@@ -1,0 +1,22 @@
+{
+    "rules": {
+        "users": {
+            "$uid": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid"
+            }
+        },
+        "surveys": {
+            "$surveyid": {
+                ".read": "true",
+                ".write": "root.child('users').hasChild(auth.uid) && (auth.uid === data.child('ownerid').val() || !data.hasChild('ownerid'))"
+            }
+        }
+    },
+    "participations": {
+        "$surveyid": {
+            ".read": "",
+            ".write": "false"
+        }
+    }
+}
