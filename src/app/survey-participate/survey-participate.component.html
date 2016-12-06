@@ -1,25 +1,38 @@
 <h2>{{survey?.name}}</h2>
 <h4>{{survey?.description}}</h4>
-{{participation | json}}
-<div class="questions" *ngFor="let question of survey?.questions; let i = index;">
-	<div class="question" [ngSwitch]="question.type">
-		<div class="question-text">
-			{{question.question}}
-		</div>
-		<div *ngSwitchCase="'1'">
-			<div>
-				<div *ngFor="let option of question.options; let j = index;">
-					<label class="btn btn-primary">
-						<input type="radio" [(ngModel)]="participation[i]" [value]="j">{{option.text}}
+{{participations | json}} {{observable | json}}
+<form (ngSubmit)="save()" #surveyForm="ngForm">
+	<div class="questions" *ngFor="let question of survey?.questions; let i = index;">
+		<div class="question" [ngSwitch]="question.type">
+			<div class="question-text">
+				{{question.question}}
+			</div>
+			<div *ngSwitchCase="'1'">
+				<div>
+					<div *ngFor="let option of question.options; let j = index;">
+						<label class="btn btn-primary">
+						<input required name="type{{question.type}}_question{{i}}" type="radio" [(ngModel)]="participations[i].answer" [value]="j">{{option.text}}
 					</label>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div *ngSwitchCase="'2'">
-			This is type 2
-		</div>
-		<div *ngSwitchCase="'3'">
-			This is type 3
+			<div *ngSwitchCase="'2'">
+				<label for="inputEmail" class="sr-only">{{question.question}}</label>
+				<input required name="type{{question.type}}_question{{i}}" [(ngModel)]="participations[i].answer" name="email" type="text"
+					class="form-control">
+			</div>
+			<div *ngSwitchCase="'3'">
+				<div>
+					<input #uploadform type="file" (change)="upload($event, i)">
+					<ngb-progressbar type="success" [value]="uploadpercentage" max="100"></ngb-progressbar>
+					<img src="{{participations[i].answer}}" *ngIf="participations[i].answer" />
+					<button *ngIf="participations[i].answer" type="button" class="btn btn-danger" (click)="removeImage(i)"> Remove Image </button>
+				</div>
+			</div>
+			<hr />
 		</div>
 	</div>
-</div>
+	<div style="display: inline;" ngbTooltip="{{surveyForm.form.valid ? '' : 'Please fill out the survey.'}}">
+		<button type="submit" [disabled]="!surveyForm.form.valid || !allUploaded" class="btn btn-success"> Save </button>
+	</div>
+</form>
