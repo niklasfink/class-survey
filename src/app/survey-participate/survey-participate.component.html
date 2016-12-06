@@ -1,6 +1,6 @@
 <h2>{{survey?.name}}</h2>
 <h4>{{survey?.description}}</h4>
-{{participations | json}} {{observable | json}}
+{{participations | json}}
 <form (ngSubmit)="save()" #surveyForm="ngForm">
 	<div class="questions" *ngFor="let question of survey?.questions; let i = index;">
 		<div class="question" [ngSwitch]="question.type">

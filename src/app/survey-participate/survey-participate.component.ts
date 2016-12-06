@@ -21,7 +21,6 @@ export class SurveyParticipateComponent implements OnInit {
 
   private sub: any;
   private sub2: any;
-  private sub3: any;
   private id: any;
   private survey: any;
   private participations: any = new Array<Participation>();
@@ -46,8 +45,10 @@ export class SurveyParticipateComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      if (this.id.length != 20)
+      if (this.id.length != 20) {
         this.router.navigateByUrl("/");
+        return;
+      }
       this.sub2 = this.globals.af.database.object("/surveys/" + this.id).subscribe(survey => {
         if (survey.$exists()) {
           for (let i = 0; i < survey.questions.length; i++) {
@@ -76,33 +77,22 @@ export class SurveyParticipateComponent implements OnInit {
     let task = this.storage.child(this.savePath).put(files);
     task.on('state_changed', snapshot => {
       this.uploadpercentage = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-    }, error => {
-      console.log(error);
-      switch (error.code) {
-        case 'storage/unauthorized':
-          // User doesn't have permission to access the object
-          break;
-        case 'storage/canceled':
-          // User canceled the upload
-          break;
-        case 'storage/unknown':
-          // Unknown error occurred (error.serverResponse)
-          break;
-      }
-    }, () => {
-      // Upload successfull
-      this.participations[questionindex].answer = task.snapshot.downloadURL;
-      this.participations.forEach(p => {
-        if (p.type >= 3) {
-          if (p.answer.length > 1) {
-            this.allUploaded = true;
-          } else {
-            this.allUploaded = false;
-            return;
+    },
+      error => { console.log(error); },
+      () => {
+        // Upload successfull
+        this.participations[questionindex].answer = task.snapshot.downloadURL;
+        this.participations.forEach(p => {
+          if (p.type >= 3) {
+            if (p.answer.length > 1) {
+              this.allUploaded = true;
+            } else {
+              this.allUploaded = false;
+              return;
+            }
           }
-        }
+        });
       });
-    });
   }
 
   removeImage(i) {
@@ -121,8 +111,6 @@ export class SurveyParticipateComponent implements OnInit {
     if (this.sub)
       this.sub.unsubscribe();
     if (this.sub2)
-      this.sub.unsubscribe();
-    if (this.sub3)
-      this.sub.unsubscribe();
+      this.sub2.unsubscribe();
   }
 }
