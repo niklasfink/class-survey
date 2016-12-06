@@ -18,7 +18,9 @@ export class GlobalService {
     // for fast login checks
     loggedIn: boolean = false;
 
-    constructor(public af: AngularFire) {
+    constructor(
+        public af: AngularFire
+    ) {
         this.af.auth.subscribe(authstate => {
             if (authstate) {
                 let user = new User;

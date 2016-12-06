@@ -45,7 +45,6 @@ export class SurveyCreateComponent {
           this.globals.af.database.object("/users/" + user.uid + "/surveys/")
             .update({ [res.getKey()]: true })
             .then(res => {
-              console.log(res);
               // Survey saved! Show notification, forward to...
             })
             .catch(err => console.log(err, 'You dont have access!'));
