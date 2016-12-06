@@ -3,6 +3,7 @@ import { AngularFire } from "angularfire2";
 import { GlobalService } from '../globals';
 import { Subscription } from 'rxjs/Subscription';
 
+
 class Survey {
   id: string;
   name: string;
@@ -16,16 +17,20 @@ class Survey {
 })
 export class SurveyOverviewComponent implements OnInit {
 
-  surveys: any = new Array;
+  surveys: any;
   sub: Subscription;
+  sub2: Subscription;
 
   constructor(public globals: GlobalService) { }
 
   ngOnInit() {
     this.globals.user.subscribe(user => {
       this.sub = this.globals.af.database.list('/users/' + user.uid + "/surveys").subscribe(s => {
-        s.map(item => {
-          this.surveys.push(item);
+        this.surveys = new Array;
+        s.map(val => {
+          this.sub2 = this.globals.af.database.object('/surveys/' + val.$key).subscribe(obj => {
+            this.surveys.push(obj);
+          });
         });
       });
     });
@@ -34,5 +39,7 @@ export class SurveyOverviewComponent implements OnInit {
   ngOnDestroy() {
     if (this.sub)
       this.sub.unsubscribe();
+    if (this.sub2)
+      this.sub2.unsubscribe();
   }
 }

@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-default" (click)="ngOnInit()">Refresh</button>
 <table class="table table-hover table-bordered">
 	<thead>
 		<tr>
@@ -13,9 +14,19 @@
 			<th class="id" scope="row">{{survey.$key}}</th>
 			<td class="survey-name" ngbPopover="{{survey.description}}" triggers="mouseenter:mouseleave" popoverTitle="Survey Description"
 				container="body">{{survey.name}}</td>
-			<td class="number-questions">{{survey.length}}</td>
+			<td class="number-questions">{{survey.questions?.length}}</td>
 			<td class="number-participations">XX</td>
-			<td class="actions">Action</td>
+			<td class="actions">
+				<template #popContent>
+					<input value="http://localhost:4200/survey/{{survey.$key}}" #surveyLink>
+					<button class="btn" [ngIIclipboard]="surveyLink">
+						<i class="fi-paperclip"></i>
+					</button>
+				</template>
+				<button type="button" class="btn btn-secondary" [ngbPopover]="popContent">Copy Link</button>
+				<button type="button" class="btn btn-outline-success">Good Button</button>
+				<button type="button" class="btn btn-outline-danger">Bad Button</button>
+			</td>
 		</tr>
 	</tbody>
 </table>

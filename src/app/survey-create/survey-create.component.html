@@ -2,14 +2,14 @@
 	<h2 class="createsurvey-heading">Create Survey</h2>
 	<div class="card">
 		<div class="card-block">
-			<!--<input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Survey Name" required autofocus>-->
-			<h4 class="card-title">Survey name goes here</h4>
-			<!--<input [(ngModel)]="description" name="description" type="textarea" class="form-control" placeholder="Survey Description">-->
-			<h6 class="card-subtitle text-muted">Survey description goes here</h6>
+			<input *ngIf="edit" [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Survey Name" required autofocus>
+			<h4 *ngIf="!edit" class="card-title">{{name}}</h4>
+			<input *ngIf="edit" [(ngModel)]="description" name="description" type="textarea" class="form-control" placeholder="Survey Description">
+			<h6 *ngIf="!edit" class="card-subtitle text-muted">{{description}}</h6>
 		</div>
 		<div class="card-footer text-muted">
-    		Edit
-  	</div>
+			<a (click)="edit ? edit = false : edit = true">{{edit ? "Done" : "Edit"}}</a>
+		</div>
 	</div>
 
 	<div class="card question-card text-xs-center">
@@ -26,35 +26,38 @@
 			</div>
 		</div>
 		<!--<button class="btn btn-primary" (click)="addQuestion()" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>-->
-		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>	
+		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions" (click)="edit=false"><i class="fi-plus"></i> Add a new question</button>
 	</div>
 	<button class="btn btn-success" (click)="saveSurvey()">Save</button>
 </div>
 
 <!-- Model for question options -->
 <div class="modal fade" id="questionOptions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Add a new question</h4>
-      </div>
-      <div class="modal-body">
+				<h4 class="modal-title" id="myModalLabel">Add a new question</h4>
+			</div>
+			<div class="modal-body">
 				<a (click)="addQuestion()" data-dismiss="modal">
 					<div class="container">
-						<i class="fi-list-thumbnails"></i> Multiple Choice<hr/>
+						<i class="fi-list-thumbnails"></i> Multiple Choice
+						<hr/>
 					</div>
 				</a>
 				<a (click)="addQuestion()" data-dismiss="modal">
 					<div class="container">
-						<i class="fi-align-left"></i> Single Textbox<hr/>
+						<i class="fi-align-left"></i> Single Textbox
+						<hr/>
 					</div>
 				</a>
 				<a (click)="addQuestion()" data-dismiss="modal">
 					<div class="container">
-						<i class="fi-photo"></i> Image Upload<hr/>
+						<i class="fi-photo"></i> Image Upload
+						<hr/>
 					</div>
 				</a>
 				<a (click)="addQuestion()" data-dismiss="modal">
@@ -62,8 +65,8 @@
 						<i class="fi-upload"></i> File Upload
 					</div>
 				</a>
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- End model for question options -->

@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { SurveyCreateComponent } from './survey-create/survey-create.component';
 import { GlobalService } from './globals';
 import { SurveyOverviewComponent } from './survey-overview/survey-overview.component';
+import { SurveyParticipateComponent } from './survey-participate/survey-participate.component';
+import { ClipboardModule } from 'angular2-clipboard';
 
 const firebaseConfig = ({
   apiKey: "AIzaSyB_PXaiTdRaxSILx5dWjT-_vasfT9LBk7Q",
@@ -25,7 +27,7 @@ const firebaseConfig = ({
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, RegisterComponent,
-    SurveyCreateComponent, NavigationComponent, HomeComponent, SurveyOverviewComponent
+    SurveyCreateComponent, NavigationComponent, HomeComponent, SurveyOverviewComponent, SurveyParticipateComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ const firebaseConfig = ({
     AngularFireModule.initializeApp(firebaseConfig, {
       provider: AuthProviders.Password,
       method: AuthMethods.Password
-    })
+    }),
+    ClipboardModule
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]

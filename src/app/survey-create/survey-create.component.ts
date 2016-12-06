@@ -23,6 +23,7 @@ export class SurveyCreateComponent {
   questions: Array<Question> = new Array;
   name: string = "";
   description: string = "";
+  edit: boolean = true;
 
   constructor(public globals: GlobalService) {
   }
@@ -38,10 +39,16 @@ export class SurveyCreateComponent {
 
   saveSurvey() {
     this.globals.user.subscribe(user => {
-      this.globals.af.database.list("/users/" + user.uid + "/" + "surveys")
-        .push({ name: this.name, description: this.description, questions: this.questions })
+      this.globals.af.database.list("/surveys/")
+        .push({ ownerid: user.uid, name: this.name, description: this.description, questions: this.questions })
         .then(res => {
-          // Survey saved! Show notification, forward to...
+          this.globals.af.database.object("/users/" + user.uid + "/surveys/")
+            .update({ [res.getKey()]: true })
+            .then(res => {
+              console.log(res);
+              // Survey saved! Show notification, forward to...
+            })
+            .catch(err => console.log(err, 'You dont have access!'));
         })
         .catch(err => console.log(err, 'You dont have access!'));
     });
