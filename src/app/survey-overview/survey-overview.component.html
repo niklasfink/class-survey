@@ -4,8 +4,8 @@
 		<tr>
 			<th>ID</th>
 			<th>Survey name</th>
-			<th># questions</th>
-			<th># participations</th>
+			<th placement="top" container="body" ngbTooltip="Number Questions"># Q</th>
+			<th placement="top" container="body" ngbTooltip="Number Participations"># P</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -15,7 +15,7 @@
 			<td class="survey-name" ngbPopover="{{survey.description}}" triggers="mouseenter:mouseleave" popoverTitle="Survey Description"
 				container="body">{{survey.name}}</td>
 			<td class="number-questions">{{survey.questions?.length}}</td>
-			<td class="number-participations">XX</td>
+			<td class="number-participations">{{survey.participationCount}}</td>
 			<td class="actions">
 				<template #popContent>
 					<input value="http://localhost:4200/survey/{{survey.$key}}" #surveyLink>
