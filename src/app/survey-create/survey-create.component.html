@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="page-header">
-  		<h1 class="createsurvey-heading">{{headerVerb}} Survey</h1>
+		<h1 class="createsurvey-heading">{{headerVerb}} Survey</h1>
 	</div>
 	<div class="card">
 		<div class="card-block">
@@ -15,15 +15,18 @@
 	</div>
 	<hr/>
 	<div class="card card-outline-primary question" *ngFor="let question of questions; let i = index;">
-		<div class="card-header clearfix">
-			Question {{i+1}}: Multiple Choice <!-- {{questionType}} -->
-			<button class="btn btn-danger btn-sm float-xs-right" (click)="questions.splice(i, 1)"><i class="fi-x"></i></button>
+		<div class="card-header">
+			<i *ngIf="question.type == '1'" class="fi-list-thumbnails"></i>
+			<i *ngIf="question.type == '2'" class="fi-align-left"></i>
+			<i *ngIf="question.type == '3'" class="fi-photo"></i>
+			<i *ngIf="question.type == '4'" class="fi-upload"></i>&nbsp;&nbsp; Question {{i+1}}
+			<button class="btn btn-danger btn-sm" (click)="questions.splice(i, 1)"><i class="fi-x"></i></button>
 		</div>
 		<div class="card-block">
 			<div class="question">
 				<input [(ngModel)]="question.question" name="question" type="text" class="form-control" placeholder="Question">
 				<hr/>
-				<div *ngSwitchCase="'1'">
+				<div *ngIf="question.type == '1'">
 					<!-- Multiple Choice -->
 					<label>Answer Choices:</label>
 					<div class="options">
@@ -33,25 +36,25 @@
 									<input [(ngModel)]="option.text" name="text" type="text" class="form-control" placeholder="Option Text">
 								</div>
 								<div class="col-xs-1">
-									<a (click)="question.removeOption(j)"><i class="fi-x text-danger"></i></a>
+									<button class="btn btn-danger btn-sm" (click)="question.options.splice(j,1)"><i class="fi-x"></i></button>
 								</div>
 							</div>
 						</div>
 					</div>
 					<a class="btn btn-success btn-sm" (click)="addOption(question)"><i style="color: white;" class="fi-plus"></i></a>
 				</div>
-				<div *ngSwitchCase="'2'">
+				<div *ngIf="question.type == '2'">
 					<div class="form-group">
 						<textarea class="form-control" rows="5"></textarea>
 					</div>
 				</div>
-				<div *ngSwitchCase="'3'">
+				<div *ngIf="question.type == '3'">
 					<label>
 						<input #uploadform type="file" (change)="upload($event, i)" disabled>
 					</label>
 				</div>
-				<div *ngSwitchCase="'4'">
-					
+				<div *ngIf="question.type == '4'">
+
 				</div>
 			</div>
 		</div>
@@ -104,4 +107,3 @@
 		</div>
 	</div>
 	<!-- End model for question options -->
-
