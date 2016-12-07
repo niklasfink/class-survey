@@ -3,11 +3,11 @@
 {{participations | json}}
 <form (ngSubmit)="save()" #surveyForm="ngForm">
 	<div class="questions" *ngFor="let question of survey?.questions; let i = index;">
-		<div class="question" [ngSwitch]="question.type">
+		<div class="question">
 			<div class="question-text">
 				{{question.question}}
 			</div>
-			<div *ngSwitchCase="'1'">
+			<div *ngIf="question.type == 1">
 				<div>
 					<div *ngFor="let option of question.options; let j = index;">
 						<label class="btn btn-primary">
@@ -16,12 +16,10 @@
 					</div>
 				</div>
 			</div>
-			<div *ngSwitchCase="'2'">
-				<label for="inputEmail" class="sr-only">{{question.question}}</label>
-				<input required name="type{{question.type}}_question{{i}}" [(ngModel)]="participations[i].answer" name="email" type="text"
-					class="form-control">
+			<div *ngIf="question.type == 2">
+				<input required name="type{{question.type}}_question{{i}}" [(ngModel)]="participations[i].answer" type="text" class="form-control">
 			</div>
-			<div *ngSwitchCase="'3'">
+			<div *ngIf="question.type == 3">
 				<div>
 					<input #uploadform type="file" (change)="upload($event, i)">
 					<ngb-progressbar type="success" [value]="uploadpercentage" max="100"></ngb-progressbar>

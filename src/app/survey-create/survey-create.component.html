@@ -21,9 +21,9 @@
 			<button class="btn btn-danger btn-sm" (click)="questions.splice(i, 1)"><i class="fi-x"></i></button>
 		</div>
 		<div class="card-block">
-			<div class="question" [ngSwitch]="question.type">
+			<div class="question">
 				<input [(ngModel)]="question.question" name="question" type="text" class="form-control" placeholder="Question">
-				<div *ngSwitchCase="'1'">
+				<div *ngIf="question.type == 1">
 					<!-- Multiple Choice -->
 					<button class="btn btn-outline-info" (click)="addOption(question)">Add Option</button>
 					<div class="options">
@@ -33,13 +33,13 @@
 						</div>
 					</div>
 				</div>
-				<div *ngSwitchCase="'2'">
+				<div *ngIf="question.type == 2">
 					<!-- Single Textbox -->
 				</div>
-				<div *ngSwitchCase="'3'">
+				<div *ngIf="question.type == 3">
 					<!-- Image Upload -->
 				</div>
-				<div *ngSwitchCase="'4'">
+				<div *ngIf="question.type == 4">
 					<!-- File Textbox -->
 				</div>
 			</div>
