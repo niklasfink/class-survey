@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 class Question {
   id: string;
-  type: number;
+  type: string;
   question: string;
   options: Array<any> = new Array;
 
@@ -27,6 +27,7 @@ export class SurveyCreateComponent implements OnInit {
   edit: boolean = true;
   sub: any;
   sub2: any;
+  sub3: any;
   id: any;
   headerVerb: string = "Create";
 
@@ -36,28 +37,36 @@ export class SurveyCreateComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-      if (this.id.length != 20) {
-        this.router.navigateByUrl("/survey-overview");
-        return;
+    this.sub3 = this.route.url.subscribe(url => {
+      if (url[0].path == "survey-modify") {
+        this.sub = this.route.params.subscribe(params => {
+          this.id = params['id'];
+          if (this.id.length != 20) {
+            this.router.navigateByUrl("/survey-overview");
+            return;
+          }
+          this.edit = false;
+          this.headerVerb = "Modify";
+          this.sub2 = this.globals.af.database.object("/surveys/" + this.id).subscribe(survey => {
+            if (survey.$exists()) {
+              this.questions = survey.questions;
+              if (!this.questions) {
+                this.questions = new Array;
+              }
+              this.name = survey.name;
+              this.description = survey.description;
+            } else {
+              this.router.navigateByUrl("/survey-overview");
+            }
+          });
+        });
       }
-      this.edit = false;
-      this.headerVerb = "Modify";
-      this.sub2 = this.globals.af.database.object("/surveys/" + this.id).subscribe(survey => {
-        if (survey.$exists()) {
-          this.questions = survey.questions;
-          this.name = survey.name;
-          this.description = survey.description;
-        } else {
-          this.router.navigateByUrl("/survey-overview");
-        }
-      });
     });
   }
 
-  addQuestion(type: number) {
+  addQuestion(type: string) {
     let q = new Question;
+    q.type = type + "";
     this.questions.push(q);
   }
 
@@ -97,6 +106,8 @@ export class SurveyCreateComponent implements OnInit {
       this.sub.unsubscribe();
     if (this.sub2)
       this.sub2.unsubscribe();
+    if (this.sub3)
+      this.sub3.unsubscribe();
   }
 
 }
