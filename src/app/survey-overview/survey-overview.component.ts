@@ -8,6 +8,7 @@ class Survey {
   id: string;
   name: string;
   description: string;
+  participationCount: number;
 }
 
 @Component({
@@ -20,6 +21,7 @@ export class SurveyOverviewComponent implements OnInit {
   surveys: any;
   sub: Subscription;
   sub2: Subscription;
+  sub3: Subscription;
 
   constructor(public globals: GlobalService) { }
 
@@ -29,6 +31,9 @@ export class SurveyOverviewComponent implements OnInit {
         this.surveys = new Array;
         s.map(val => {
           this.sub2 = this.globals.af.database.object('/surveys/' + val.$key).subscribe(obj => {
+            this.sub3 = this.globals.af.database.list('/participations/' + val.$key).subscribe(ps => {
+              obj.participationCount = ps.length;
+            });
             this.surveys.push(obj);
           });
         });
@@ -41,5 +46,7 @@ export class SurveyOverviewComponent implements OnInit {
       this.sub.unsubscribe();
     if (this.sub2)
       this.sub2.unsubscribe();
+    if (this.sub3)
+      this.sub3.unsubscribe();
   }
 }

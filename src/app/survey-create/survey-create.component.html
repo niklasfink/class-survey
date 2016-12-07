@@ -20,7 +20,7 @@
 			<button class="btn btn-danger btn-sm float-xs-right" (click)="questions.splice(i, 1)"><i class="fi-x"></i></button>
 		</div>
 		<div class="card-block">
-			<div class="question" [ngSwitch]="question.type">
+			<div class="question">
 				<input [(ngModel)]="question.question" name="question" type="text" class="form-control" placeholder="Question">
 				<hr/>
 				<div *ngSwitchCase="'1'">
@@ -59,7 +59,9 @@
 
 	<div class="card add-question-card text-xs-center">
 		<!--<button class="btn btn-primary" (click)="addQuestion()" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>-->
-		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions" (click)="edit=false"><i class="fi-plus"></i> Add a new question</button>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions" (click)="(name && description) ? edit=false : ''">
+			<i class="fi-plus"></i> Add a new question
+		</button>
 	</div>
 	<button class="btn btn-success" (click)="saveSurvey()">Save</button>
 
