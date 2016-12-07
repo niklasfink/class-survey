@@ -5,10 +5,10 @@ import { FirebaseApp } from 'angularfire2';
 import { Observable } from 'rxjs';
 
 class Participation {
-  constructor(type: any) {
+  constructor(type: string) {
     this.type = type;
   }
-  type: number = -1;
+  type: string = "-1";
   answer: any = null;
 }
 
