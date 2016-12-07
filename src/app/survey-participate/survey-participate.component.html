@@ -1,38 +1,38 @@
-<h2>{{survey?.name}}</h2>
-<h4>{{survey?.description}}</h4>
-{{participations | json}}
-<form (ngSubmit)="save()" #surveyForm="ngForm">
-	<div class="questions" *ngFor="let question of survey?.questions; let i = index;">
-		<div class="question" [ngSwitch]="question.type">
-			<div class="question-text">
-				{{question.question}}
-			</div>
-			<div *ngSwitchCase="'1'">
-				<div>
-					<div *ngFor="let option of question.options; let j = index;">
-						<label class="btn btn-primary">
-						<input required name="type{{question.type}}_question{{i}}" type="radio" [(ngModel)]="participations[i].answer" [value]="j">{{option.text}}
-					</label>
+<div class="container">
+	<div class="page-header">
+		<h1 class="createsurvey-heading">{{survey?.name}} <small class="text-muted">{{survey?.description}}</small></h1>
+	</div>
+	<!--{{participations | json}}-->
+	<form (ngSubmit)="save()" #surveyForm="ngForm">
+		<div class="questions" *ngFor="let question of survey?.questions; let i = index;">
+			<div class="question" [ngSwitch]="question.type">
+				<div class="card card-block">
+					<h4 class="card-title text-info thin">{{question.question}}</h4>
+					<div *ngSwitchCase="'1'">
+						<div *ngFor="let option of question.options; let j = index;">
+							<div class="custom-controls-stacked">
+								<label>
+									<input required name="type{{question.type}}_question{{i}}" type="radio" [(ngModel)]="participations[i].answer" [value]="j"><span class="text-muted thin surOption"> {{option.text}}</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div *ngSwitchCase="'2'">
+						<label for="inputEmail" class="sr-only">{{question.question}}</label>
+						<input required name="type{{question.type}}_question{{i}}" [(ngModel)]="participations[i].answer" name="email" type="text" class="form-control">
+					</div>
+					<div *ngSwitchCase="'3'">
+						<input #uploadform type="file" (change)="upload($event, i)">
+						<ngb-progressbar type="success" [value]="uploadpercentage" max="100"></ngb-progressbar>
+						<img src="{{participations[i].answer}}" *ngIf="participations[i].answer" />
+						<button *ngIf="participations[i].answer" type="button" class="btn btn-danger" (click)="removeImage(i)"> Remove Image </button>
 					</div>
 				</div>
 			</div>
-			<div *ngSwitchCase="'2'">
-				<label for="inputEmail" class="sr-only">{{question.question}}</label>
-				<input required name="type{{question.type}}_question{{i}}" [(ngModel)]="participations[i].answer" name="email" type="text"
-					class="form-control">
-			</div>
-			<div *ngSwitchCase="'3'">
-				<div>
-					<input #uploadform type="file" (change)="upload($event, i)">
-					<ngb-progressbar type="success" [value]="uploadpercentage" max="100"></ngb-progressbar>
-					<img src="{{participations[i].answer}}" *ngIf="participations[i].answer" />
-					<button *ngIf="participations[i].answer" type="button" class="btn btn-danger" (click)="removeImage(i)"> Remove Image </button>
-				</div>
-			</div>
-			<hr />
 		</div>
-	</div>
-	<div style="display: inline;" ngbTooltip="{{surveyForm.form.valid ? '' : 'Please fill out the survey.'}}">
-		<button type="submit" [disabled]="!surveyForm.form.valid || !allUploaded" class="btn btn-success"> Save </button>
-	</div>
-</form>
+		<hr/>
+		<div style="display: inline;" ngbTooltip="{{surveyForm.form.valid ? '' : 'Please fill out the survey.'}}">
+			<button type="submit" [disabled]="!surveyForm.form.valid || !allUploaded" class="btn btn-success"> Save </button>
+		</div>
+	</form>
+</div>

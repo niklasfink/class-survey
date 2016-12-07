@@ -1,8 +1,15 @@
-
-
 .add-question-card {
     padding-top: 20px;
     padding-bottom: 20px;
     border-style: dashed;
 }
-p { margin:0 }
+
+input {
+    margin-bottom: .5rem;
+}
+
+
+a.disabled {
+   pointer-events: none;
+   cursor: default;
+}

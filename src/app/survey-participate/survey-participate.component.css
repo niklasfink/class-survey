@@ -1,0 +1,11 @@
+.card {
+    border: none;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+.surOption {
+    margin-left: .5rem;
+}
