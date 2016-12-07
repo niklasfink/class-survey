@@ -15,7 +15,9 @@ const appRoutes: Routes = [
     { path: 'survey-create', component: SurveyCreateComponent },
     { path: 'survey-overview', component: SurveyOverviewComponent },
     { path: 'survey', redirectTo: '', pathMatch: 'full' },
-    { path: 'survey/:id', component: SurveyParticipateComponent }
+    { path: 'survey/:id', component: SurveyParticipateComponent },
+    { path: 'survey-modify', redirectTo: '/survey-overview', pathMatch: 'full' },
+    { path: 'survey-modify/:id', component: SurveyCreateComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
