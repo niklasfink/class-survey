@@ -14,7 +14,10 @@
 	<hr/>
 	<div class="card card-outline-primary question" *ngFor="let question of questions; let i = index;">
 		<div class="card-header">
-			Question {{i+1}}
+			<i *ngIf="question.type == '1'" class="fi-list-thumbnails"></i>
+			<i *ngIf="question.type == '2'" class="fi-align-left"></i>
+			<i *ngIf="question.type == '3'" class="fi-photo"></i>
+			<i *ngIf="question.type == '4'" class="fi-upload"></i>&nbsp;&nbsp; Question {{i+1}}
 			<button class="btn btn-danger btn-sm" (click)="questions.splice(i, 1)"><i class="fi-x"></i></button>
 		</div>
 		<div class="card-block">
@@ -45,7 +48,9 @@
 
 	<div class="card add-question-card text-xs-center">
 		<!--<button class="btn btn-primary" (click)="addQuestion()" data-toggle="modal" data-target="#questionOptions"><i class="fi-plus"></i> Add a new question</button>-->
-		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions" (click)="edit=false"><i class="fi-plus"></i> Add a new question</button>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#questionOptions" (click)="(name && description) ? edit=false : ''">
+			<i class="fi-plus"></i> Add a new question
+		</button>
 	</div>
 	<button class="btn btn-success" (click)="saveSurvey()">Save</button>
 
