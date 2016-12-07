@@ -51,7 +51,14 @@ export class SurveyParticipateComponent implements OnInit {
       }
       this.sub2 = this.globals.af.database.object("/surveys/" + this.id).subscribe(survey => {
         if (survey.$exists()) {
+          let foundUpload = false;
           for (let i = 0; i < survey.questions.length; i++) {
+            if (!foundUpload && survey.questions[i].type >= 3) {
+              foundUpload = true;
+              this.allUploaded = false;
+            } else if (!foundUpload) {
+              this.allUploaded = true;
+            }
             this.participations[i] = new Participation(survey.questions[i].type);
           }
           this.survey = survey;
